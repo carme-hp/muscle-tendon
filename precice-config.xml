@@ -26,9 +26,9 @@
       <provide-mesh name="Tendon-Mesh" />
       <receive-mesh name="Muscle-Mesh" from="Muscle"/>
 
-      <read-data name="Displacement"  mesh="Tendon-Mesh"/>
-      <read-data name="Velocity"      mesh="Tendon-Mesh"/>
-      <write-data  name="Traction"    mesh="Tendon-Mesh"/>
+      <write-data name="Displacement"  mesh="Tendon-Mesh"/>
+      <write-data name="Velocity"      mesh="Tendon-Mesh"/>
+      <read-data  name="Traction"    mesh="Tendon-Mesh"/>
 
       <mapping:nearest-neighbor direction="read" from="Muscle-Mesh" to="Tendon-Mesh" constraint="consistent"/>
 
@@ -49,10 +49,10 @@
     
 
     <!-- Communication method, use TCP sockets, Change network to "ib0" on SuperMUC -->
-    <m2n:sockets acceptor="Tendon" connector="Muscle" network="lo" />
+    <m2n:sockets acceptor="Muscle" connector="Tendon" network="lo" />
 
     <coupling-scheme:parallel-implicit>
-      <participants first="Muscle" second="Tendon"/>
+      <participants first="Tendon" second="Muscle"/>
 
       <max-time value="20.0"/>           
       <time-window-size value="0.1"/>   
@@ -66,10 +66,9 @@
         <time-windows-reused value="100"/>
       </acceleration:IQN-ILS>
 
-
       <relative-convergence-measure limit="1e-2" data="Displacement" mesh="Tendon-Mesh" strict="0"/>
       <relative-convergence-measure limit="1e-2" data="Velocity" mesh="Tendon-Mesh" strict="0"/>
-      <absolute-convergence-measure limit="1e-1" data="Traction" mesh="Muscle-Mesh" strict="0"/>
+      <!-- <absolute-convergence-measure limit="1e-1" data="Traction" mesh="Muscle-Mesh" strict="0"/> -->
 
       <exchange data="Displacement" mesh="Tendon-Mesh" from="Tendon" to="Muscle"/>  
       <exchange data="Velocity" mesh="Tendon-Mesh" from="Tendon" to="Muscle"/>  

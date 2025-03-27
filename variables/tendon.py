@@ -82,7 +82,7 @@ def get_from_obj(data, path):
 
 def write_average_position(data):
     t = get_from_obj(data, [0, 'currentTime'])
-    z_data = get_from_obj(data, [0, 'data', ('name','geometry'), 'components', 2, 'values'])
+    z_data = get_from_obj(data, [0, 'data', ('name','T (material traction)'), 'components', 2, 'values'])
 
     [mx, my, mz] = get_from_obj(data, [0, 'nElementsLocal'])
     nx = 2*mx + 1
@@ -102,7 +102,7 @@ def write_average_position(data):
     z_value_end /= ny*nx
 
 
-    f = open("muscle_position.txt", "a")
+    f = open("tendon_position.txt", "a")
     f.write("{:6.2f} {:+2.8f} {:+2.8f}\n".format(t,z_value_begin, z_value_end))
     f.close()
 

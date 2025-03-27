@@ -95,7 +95,7 @@ diffusion_prefactor = 3.828 / (500.0 * 0.58)                # Conductivity / (Am
 
 # stimulation parameters
 specific_states_call_enable_begin = 0.0                     # time of first fiber activation
-specific_states_call_frequency = 1e-3                       # frequency of fiber activation
+specific_states_call_frequency = 1e-1                       # frequency of fiber activation
 neuromuscular_junction_relative_size =.0
 value_for_stimulated_point = 20 #mV
 
@@ -130,7 +130,7 @@ def get_from_obj(data, path):
 
 def write_average_position(data):
     t = get_from_obj(data, [0, 'currentTime'])
-    z_data = get_from_obj(data, [0, 'data', ('name','geometry'), 'components', 2, 'values'])
+    z_data = get_from_obj(data, [0, 'data', ('name','T (material traction)'), 'components', 2, 'values'])
 
     [mx, my, mz] = get_from_obj(data, [0, 'nElementsLocal'])
     nx = 2*mx + 1

@@ -100,7 +100,7 @@ def write_average_position(data):
     z_value_end /= ny*nx
 
 
-    f = open("muscle_position.txt", "a")
+    f = open("tendon_position.txt", "a")
     f.write("{:6.2f} {:+2.8f} {:+2.8f}\n".format(t,z_value_begin, z_value_end))
     f.close()
 
