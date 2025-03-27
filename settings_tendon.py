@@ -48,37 +48,21 @@ config = {
       "preciceParticipantName":   "Tendon",             # name of the own precice participant, has to match the name given in the precice xml config file
       "preciceSurfaceMeshes": [                                      # the precice meshes get created as the top or bottom surface of the main geometry mesh of the nested solver
         {
-          "preciceMeshName":      "Tendon-Mesh-Left",            # precice name of the 2D coupling mesh
+          "preciceMeshName":      "Tendon-Mesh",            # precice name of the 2D coupling mesh
           "face":                 "2-",                       # face of the 3D mesh where the 2D mesh is located, "2-" = bottom, "2+" = top
-        },
-        {
-          "preciceMeshName":      "Tendon-Mesh-Right",            # precice name of the 2D coupling mesh
-          "face":                 "2+",                       # face of the 3D mesh where the 2D mesh is located, "2-" = bottom, "2+" = top
-        }     
+        }  
       ],
       "preciceSurfaceData": [  
         {
           "mode":                 "write-displacements-velocities",   # mode is one of "read-displacements-velocities", "read-traction", "write-displacements-velocities", "write-traction"
-          "preciceMeshName":      "Tendon-Mesh-Left",                    # name of the precice coupling surface mesh, as given in the precice xml settings file
+          "preciceMeshName":      "Tendon-Mesh",                    # name of the precice coupling surface mesh, as given in the precice xml settings file
           "displacementsName":    "Displacement",                     # name of the displacements "data", i.e. field variable, as given in the precice xml settings file
           "velocitiesName":       "Velocity",                     # name of the velocities "data", i.e. field variable, as given in the precice xml settings file
 
         },
         {
           "mode":                 "read-traction",                    # mode is one of "read-displacements-velocities", "read-traction", "write-displacements-velocities", "write-traction"
-          "preciceMeshName":      "Tendon-Mesh-Left",                    # name of the precice coupling surface mesh, as given in the precice xml settings 
-          "tractionName":         "Traction",                         # name of the traction "data", i.e. field variable, as given in the precice xml settings file
-        },
-        {
-          "mode":                 "read-displacements-velocities",   # mode is one of "read-displacements-velocities", "read-traction", "write-displacements-velocities", "write-traction"
-          "preciceMeshName":      "Tendon-Mesh-Right",                    # name of the precice coupling surface mesh, as given in the precice xml settings file
-          "displacementsName":    "Displacement",                     # name of the displacements "data", i.e. field variable, as given in the precice xml settings file
-          "velocitiesName":       "Velocity",                     # name of the velocities "data", i.e. field variable, as given in the precice xml settings file
-
-        },
-        {
-          "mode":                 "write-averaged-traction",                    # mode is one of "read-displacements-velocities", "read-traction", "write-displacements-velocities", "write-traction"
-          "preciceMeshName":      "Tendon-Mesh-Right",                    # name of the precice coupling surface mesh, as given in the precice xml settings 
+          "preciceMeshName":      "Tendon-Mesh",                    # name of the precice coupling surface mesh, as given in the precice xml settings 
           "tractionName":         "Traction",                         # name of the traction "data", i.e. field variable, as given in the precice xml settings file
         }
       ],
