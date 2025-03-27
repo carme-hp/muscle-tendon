@@ -37,7 +37,7 @@
 
     <participant name="Muscle">
       <provide-mesh name="Muscle-Mesh"  />
-      <receive-mesh name="Tendon-Mesh-Left"     from="Tendon"/>
+      <receive-mesh name="Tendon-Mesh"     from="Tendon"/>
 
       <read-data  name="Displacement"  mesh="Muscle-Mesh"/>
       <read-data  name="Velocity"  mesh="Muscle-Mesh"/>
@@ -52,7 +52,7 @@
     <m2n:sockets acceptor="Tendon" connector="Muscle" network="lo" />
 
     <coupling-scheme:parallel-implicit>
-      <participant first="Muscle" second="Tendon"/>
+      <participants first="Muscle" second="Tendon"/>
 
       <max-time value="20.0"/>           
       <time-window-size value="0.1"/>   
@@ -71,10 +71,10 @@
       <relative-convergence-measure limit="1e-2" data="Velocity" mesh="Tendon-Mesh" strict="0"/>
       <absolute-convergence-measure limit="1e-1" data="Traction" mesh="Muscle-Mesh" strict="0"/>
 
-      <exchange data="Displacement" mesh="Tendon-Mesh" from="Tendon" to="Left-Muscle"/>  
-      <exchange data="Velocity" mesh="Tendon-Mesh" from="Tendon" to="Left-Muscle"/>  
-      <exchange data="Traction" mesh="Muscle-Mesh" from="Left-Muscle" to="Tendon"/>  
+      <exchange data="Displacement" mesh="Tendon-Mesh" from="Tendon" to="Muscle"/>  
+      <exchange data="Velocity" mesh="Tendon-Mesh" from="Tendon" to="Muscle"/>  
+      <exchange data="Traction" mesh="Muscle-Mesh" from="Muscle" to="Tendon"/>  
 
-    </coupling-scheme:multi>
+    </coupling-scheme:parallel-implicit>
 
 </precice-configuration>

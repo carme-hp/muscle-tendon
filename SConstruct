@@ -1,17 +1,18 @@
-# This script declares to SCons how to compile the example.
-# It has to be called from a SConstruct file.
-# The 'env' object is passed from there and contains further specification like directory and debug/release flags.
+# SConstruct file for a single example.
 #
-# Note: If you're creating a new example and copied this file, adjust the desired name of the executable in the 'target' parameter of env.Program.
+# Usage: `scons BUILD_TYPE=debug` will build debug version, `scons` will build release version.
 
+# Call the generic `SConstructGeneral` script that will configure everything. It is located at the top level directory of opendihu.
+# That script will then call a `SConscript` file that defines which sources to use.
 
-Import('env')     # import Environment object from calling SConstruct
+import os
 
-# if the option no_tests was given, quit the script
-if not env['no_examples']:
-    
-  # create the main executable
-  env.Program(target = 'muscle_contraction', source = "src/muscle_contraction.cpp")
-  env.Program(target = 'muscle_mechanics', source = "src/muscle_mechanics.cpp")
-  env.Program(target = 'linear_tendon', source = "src/linear_tendon.cpp")
-  env.Program(target = 'tendon', source = "src/tendon.cpp")
+# get the directory where opendihu is installed (the top level directory of opendihu)
+opendihu_home = os.environ.get('OPENDIHU_HOME') or "../../../../../../"
+
+# set path where the "SConscript" file is located (set to current path)
+path_where_to_call_sconscript = Dir('.').srcnode().abspath
+
+# call general SConstruct that will configure everything and then call SConscript at the given path
+SConscript(os.path.join(opendihu_home,'SConstructGeneral'),
+           exports={"path": path_where_to_call_sconscript})
