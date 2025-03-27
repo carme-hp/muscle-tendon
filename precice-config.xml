@@ -61,7 +61,7 @@
       <acceleration:IQN-ILS>
         <data name="Displacement" mesh="Tendon-Mesh"/>
         <data name="Velocity" mesh="Tendon-Mesh"/>
-        <data name="Traction" mesh="Muscle-Mesh"/>
+        <!-- <data name="Traction" mesh="Muscle-Mesh"/> -->
         <max-used-iterations value="50"/>
         <time-windows-reused value="100"/>
       </acceleration:IQN-ILS>
