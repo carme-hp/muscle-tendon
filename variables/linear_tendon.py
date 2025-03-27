@@ -52,16 +52,14 @@ neumann_bc = []
 # Material parameters
 rho = 10                                                    # density of the muscle
 
-c = 9.98                    # [N/cm^2=kPa]
-ca = 14.92                  # [-]
-ct = 14.7                   # [-]
-cat = 9.64                  # [-]
-ctt = 11.24                 # [-]
-mu = 3.76                   # [N/cm^2=kPa]
-k1 = 42.217e3               # [N/cm^2=kPa]
-k2 = 411.360e3              # [N/cm^2=kPa]
 
-material_parameters = [c, ca, ct, cat, ctt, mu, k1, k2]
+youngs_modulus = 7e4        # [N/cm^2 = 10kPa]  
+shear_modulus = 3e4
+
+lambd = shear_modulus*(youngs_modulus - 2*shear_modulus) / (3*shear_modulus - youngs_modulus)  # Lamé parameter lambda
+mu = shear_modulus       # Lamé parameter mu or G (shear modulus)
+
+material_parameters = [lambd, mu]
 
 # Write to file
 #################################################################
